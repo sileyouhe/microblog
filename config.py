@@ -15,5 +15,8 @@ class Config(object):
     ADMINS = ['271047842@qq.com']
     # 支持的语言列表
     LANGUAGES = ['en', 'zh']
+    # 百度翻译的秘钥
+    APPID = os.environ.get('APPID')
+    Baidu_TRANSLATOR_KEY = os.environ.get('Baidu_TRANSLATOR_KEY')
 
 

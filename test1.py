@@ -1,23 +1,12 @@
-import threading
+from flask_mail import Message
+from app import mail
+from flask import current_app
+from threading import Thread
+from guess_language import guess_language
 
-global_Data = threading.local()
+msg = 'hello world god is a girl I dont understand'
+msg1 = '哇哈哈哈今天是个好日子'
 
-def show():
-    print(threading.current_thread().getName(), global_Data.num)
-
-def thread_cal():
-    global_Data.num = 0
-    for _ in range(100):
-        global_Data.num += 1
-    show()
-
-threads = []
-for i in range(10):
-    threads.append(threading.Thread(target=thread_cal))
-    threads[i].start()
-
-
-
-
-
+language = guess_language(msg1)
+print(language)
 

@@ -1,12 +1,11 @@
-from app import db
+from app import db,login
 from datetime import datetime
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
-from app import login
 from hashlib import md5
 import jwt
 from time import time
-from app import app
+from flask import current_app
 
 # 实现“关注”功能的多对多关系的关系表
 # 这张表里左侧代表做出关注动作的用户，右侧代表被关注人
@@ -36,12 +35,12 @@ class User(UserMixin, db.Model):
     # 最后把生成的字节序列decode成了字符串，更方便传送
     def get_reset_password_token(self,expire_in=600):
         return jwt.encode(payload={'reset_password': self.id, 'exp': time() + expire_in},
-                          key=app.config['SECRET_KEY'],algorithm='HS256').decode('utf-8')
+                          key=current_app.config['SECRET_KEY'],algorithm='HS256').decode('utf-8')
 
     @staticmethod
     def verify_reset_password_token(token):
         try:
-            id = jwt.decode(token, key=app.config['SECRET_KEY'],algorithm='HS256')['reset_password']
+            id = jwt.decode(token, key=current_app.config['SECRET_KEY'],algorithm='HS256')['reset_password']
         except:
             return
         return User.query.get(id)
@@ -97,6 +96,8 @@ class Post(db.Model):
     # 想按时间顺序看post的时候，时间戳就派上用场了
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    # 该帖子的语言
+    language = db.Column(db.String(5))
 
     def __repr__(self):
         return '<Post {}>'.format(self.body)
