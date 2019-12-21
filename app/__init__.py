@@ -64,8 +64,7 @@ def create_app(config_class=Config):
 # 要更换什么语言，我们从用户的request里看header里的accept_languages参数
 @babel.localeselector
 def get_locale():
-    #best_match = request.accept_languages.best_match(current_app.config['LANGUAGES'])
-    best_match = 'en'
+    best_match = request.accept_languages.best_match(current_app.config['LANGUAGES'])
     return best_match
 
 
