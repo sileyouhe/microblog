@@ -4,7 +4,7 @@ Introduction
 -------
 My first web application built with python and flask   
 
-[Kaiyu Pei's microblog](www.kypei.xyz)   
+[Kaiyu Pei's microblog](https://www.kypei.xyz)   
 
 Thanks
 ---------
