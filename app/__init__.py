@@ -30,11 +30,6 @@ def create_app(config_class=Config):
     migrate.init_app(app,db)
     login.init_app(app)
     # 初始化mail服务
-    app.config['MAIL_SERVER'] = 'smtp.qq.com'
-    app.config['MAIL_PORT'] = 465
-    app.config['MAIL_USE_SSL'] = True
-    app.config['MAIL_USERNAME'] = os.environ.get('MAIL_USERNAME')
-    app.config['MAIL_PASSWORD'] = os.environ.get('MAIL_PASSWORD')
     mail = Mail(app)
 
 # 初始化bootstrap，用来美化页面

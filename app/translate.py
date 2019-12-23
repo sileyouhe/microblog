@@ -5,13 +5,18 @@ import hashlib
 import urllib
 import random
 import json
+from flask import current_app
+from flask_babel import _
 
-appid = '20191220000368200'  # 填写你的appid
-secretKey = 'kF9xHZCZvn8qXh4IbaBb'  # 填写你的密钥
 
 
 def translate(text, source_language, dest_language):
+    if 'TRANSLATOR_KEY' not in current_app.config or \
+            not current_app.config['TRANSLATOR_KEY']:
+        return _('Error: the translation service is not configured.')
     httpClient = None
+    appid = current_app.config['APPID']
+    secretKey = current_app.config['TRANSLATOR_KEY']
     myurl = '/api/trans/vip/translate'
     fromLang = source_language  # 原文语种
     toLang = dest_language  # 译文语种
