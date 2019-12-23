@@ -4,8 +4,8 @@ Introduction
 -------
 My first web application built with python and flask   
 
-[Kaiyu Pei's microblog (Domain Name)](https://www.kypei.xyz)   
-[Kaiyu Pei's microblog (IP)](https://111.229.36.161)  
+[Kaiyu Pei's microblog (kypei.xyz)](https://www.kypei.xyz)   
+[Kaiyu Pei's microblog (111.229.36.161)](https://111.229.36.161)  
 
 Thanks
 ---------
